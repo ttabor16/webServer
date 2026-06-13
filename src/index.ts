@@ -14,7 +14,7 @@ app.get("/api/healthz", handlerReadiness);
 
 app.get("/admin/metrics", metrics);
 
-app.get("/admin/reset", reset);
+app.post("/admin/reset", reset);
 
 app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);
