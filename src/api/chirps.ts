@@ -14,7 +14,18 @@ export async function validate_chirp(req: Request, res: Response) {
     return;
   }
 
+  const words = params.body.split(" ");
+  const badWords: string[] = ["kerfuffle", "sharbert", "fornax"];
+  const cleanWords: string[] = [];
+
+  for(let word of words) {
+    if (badWords.includes(word.toLowerCase())) {
+      cleanWords.push("****");
+      continue;
+    }
+    cleanWords.push(word);
+  }
+
   respondWithJSON(res, 200, {
-    valid: true,
-  });
-}
+    cleanedBody: cleanWords.join(" ")
+  });}
