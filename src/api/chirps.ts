@@ -1,7 +1,7 @@
-import type { Request, Response } from "express";
+import type { Request, Response, NextFunction } from "express";
 import { respondWithError, respondWithJSON } from "./json.js";
 
-export async function validate_chirp(req: Request, res: Response) {
+export async function validate_chirp(req: Request, res: Response, next: NextFunction) {
   type parameters = {
     body: string;
   };
@@ -9,9 +9,9 @@ export async function validate_chirp(req: Request, res: Response) {
   const params: parameters = req.body;
 
   const maxChirpLength = 140;
+
   if (params.body.length > maxChirpLength) {
-    respondWithError(res, 400, "Chirp is too long");
-    return;
+    throw new Error("Chirp is too long");
   }
 
   const words = params.body.split(" ");
