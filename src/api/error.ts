@@ -1,12 +1,23 @@
-import type { NextFunction, Request, Response } from "express";
-import { respondWithError} from "./json.js";
+export class BadRequestError extends Error {
+    constructor(message: string) {
+        super(message);
+    }
+}
 
-export function errorHandler( 
-    err: Error, 
-    req: Request, 
-    res: Response, 
-    next: NextFunction,
-) {
-    console.log(err);
-    respondWithError(res, 500, "Something went wrong on our end");
-};
+export class UnauthorizedError extends Error {
+    constructor(message: string) {
+        super(message);
+    }
+}
+
+export class ForbiddenError extends Error {
+    constructor(message: string) {
+        super(message);
+    }
+}
+
+export class NotFoundError extends Error {
+    constructor(message: string) {
+        super(message);
+    }
+}

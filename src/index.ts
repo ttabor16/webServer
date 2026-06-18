@@ -2,9 +2,8 @@ import express from "express";
 import { handlerReadiness } from "./api/readiness.js";
 import { reset } from "./api/reset.js";
 import { metrics } from "./api/metrics.js";
-import { middlewareLogResponses, middlewareMetricsInc } from "./api/middleware.js";
+import { middlewareLogResponses, middlewareMetricsInc, errorHandler } from "./api/middleware.js";
 import { validate_chirp } from "./api/chirps.js";
-import { errorHandler } from "./api/error.js";
 
 
 const app = express();
