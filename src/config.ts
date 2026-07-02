@@ -5,6 +5,7 @@ process.loadEnvFile()
 export type APIConfig = {
   fileServerHits: number;
   port: number;
+  platform: string;
 };
 
 export const migrationConfig: MigrationConfig = {
@@ -14,7 +15,7 @@ export const migrationConfig: MigrationConfig = {
 export function envOrThrow(key: string): string{
   const db = process.env[key];
   if (!db) {
-    throw new Error("no db");
+    throw new Error("no value");
   }
   return db;
 };
@@ -27,6 +28,7 @@ export type DBConfig = {
 export const aConfig: APIConfig = {
   fileServerHits: 0,
   port: Number(envOrThrow("PORT")),
+  platform: String(envOrThrow("PLATFORM")),
 };
 
 export const dConfig: DBConfig = {
